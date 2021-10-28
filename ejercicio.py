@@ -22,5 +22,6 @@ class Reps(Ejercicio):
 
 class Tiempo(Ejercicio):
     def __init__(self, nombre:str, grupoMuscular: str, tiempo: int):
+        self.__esCardio = True
         super().__init__(nombre, grupoMuscular)
         self.__tiempo = tiempo
