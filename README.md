@@ -5,6 +5,7 @@
 ## Requerimientos
 
 + Registrar un usuario nuevo
++ Mostrar la lista de usuarios registrados
 + Ingresar un usuario existente
 + Eliminar un usuario existente
 + Agregar un ejercicio al diccionario de entrenamientos de un usuario

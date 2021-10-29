@@ -5,6 +5,9 @@ class Usuario:
         self.__peso = peso
         self.__entrenamientos = {}
         self.__haIngresado = False
+
+    def __str__(self):
+        return f"Nombre: {self.__nombre} | Contrasena: {self.__contrasena} | Peso: {self.__peso} | Ingresado: {self.__haIngresado}"
     
     @property
     def nombre(self):
@@ -19,7 +22,4 @@ class Usuario:
         return self.__peso
     
     def toggleIngreso(self):
-        if self.__haIngresado:
-            self.__haIngresado = False
-        else:
-            self.__haIngresado = True
+        self.__haIngresado = not self.__haIngresado
