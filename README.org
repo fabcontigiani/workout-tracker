@@ -1,16 +1,16 @@
-#+TITLE: Workout Tracker
+* Workout Tracker
 
-* Descripción
+** Descripción
 
-* Requerimientos [40%]
+** Requerimientos [40%]
 
 - [X] Registrar un usuario nuevo
 - [X] Mostrar la lista de usuarios registrados
 - [X] Ingresar un usuario existente
 - [X] Eliminar un usuario existente
 - [ ] Agregar un ejercicio al diccionario de entrenamientos de un usuario
-- [ ] Quitar un ejercicio del diccionario de entrenamientos de un usuario
 - [ ] Mostrar los ejercicios realizados en el entrenamiento de un usuario correspondientes a un día en especifico
+- [ ] Quitar un ejercicio del diccionario de entrenamientos de un usuario
 - [ ] Mostrar el volumen de entrenamiento, en kilogramos, realizado por un usuario un día en especifico
 - [ ] Mostrar la cantidad de cardio, en minutos, realizado por un usuario un día en especifico
 - [ ] Mostrar la distribución de trabajo realizado según los distintos grupos musculares correspondiente al entrenamiento de un usuario un día en especifico.
