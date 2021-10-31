@@ -60,9 +60,53 @@ class Usuario:
             value = Ejercicio.PesoReps(nombre, grupoMuscular, peso, reps, sets)
 
         elif tipo == 2:
-            pass
+            # Tipo Reps
+            nombre = input("Nombre del ejercicio >> ")
+            while(not isinstance(nombre, str)):
+                print("Por favor, ingrese un valor valido.\n")
+                nombre = input("Nombre del ejercicio >> ")
+            grupoMuscular = input("Grupo muscular >> ")
+            while(not isinstance(grupoMuscular, str)):
+                print("Por favor, ingrese un valor valido.\n")
+                grupoMuscular = input("Grupo muscular >> ")
+            reps = input("Nro de repeticiones >> ")
+            while (not isinstance(reps, int)):
+                print("Por favor, ingrese un valor valido.\n")
+                reps = input("Nro de repeticiones >> ")
+            sets = input("Nro de series >> ")
+            while (not isinstance(sets, int)):
+                print("Por favor, ingrese un valor valido.\n")
+                sets = input("Nro de sets >> ")
+
+            # Creo la instancia correspondiente al ejercicio
+            value = Ejercicio.PesoReps(nombre, grupoMuscular, self.__peso,
+                                       reps, sets)
         elif tipo == 3:
-            pass
+            # Tipo Tiempo
+            nombre = input("Nombre del ejercicio >> ")
+            while(not isinstance(nombre, str)):
+                print("Por favor, ingrese un valor valido.\n")
+                nombre = input("Nombre del ejercicio >> ")
+            grupoMuscular = input("Grupo muscular >> ")
+            while(not isinstance(grupoMuscular, str)):
+                print("Por favor, ingrese un valor valido.\n")
+                grupoMuscular = input("Grupo muscular >> ")
+            tiempo = input("Tiempo [int](en minutos) >> ")
+            while(not isinstance(tiempo, int)):
+                print("Por favor, ingrese un valor valido.\n")
+                tiempo = input("Tiempo [int](en minutos) >> ")
+            cardio = input("El ejercicio es cardio? [Y/n] >> ")
+            while (cardio not in ("S", "s", "N", "n", "")):
+                print("Por favor, ingrese un valor valido.\n")
+                cardio = input("El ejercicio es cardio? [S/n] >> ")
+            if (cardio in ("S", "s", "")):
+                esCardio = True
+            else:
+                esCardio = False
+
+            # Creo la instancia correspondiente al ejercicio
+            value = Ejercicio.PesoReps(nombre, grupoMuscular, tiempo, esCardio)
+
         else:
             print("Tipo de ejercicio invalido.")
             return
