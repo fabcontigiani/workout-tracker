@@ -24,7 +24,8 @@ class Ejercicio(ABC):
 
 
 class PesoReps(Ejercicio):
-    def __init__(self, nombre: str, grupoMuscular: str, esCardio: bool, peso: int, reps: int, sets: int):
+    def __init__(self, nombre: str, grupoMuscular: str, peso: int, reps: int,
+                 sets: int):
         super().__init__(nombre, grupoMuscular)
         self.__esCardio = False
         self.__peso = peso
@@ -45,7 +46,8 @@ class PesoReps(Ejercicio):
 
 
 class Reps(Ejercicio):
-    def __init__(self, nombre: str, grupoMuscular: str, esCardio: bool, pesoCorporal: float, reps: int, sets: int):
+    def __init__(self, nombre: str, grupoMuscular: str, esCardio: bool,
+                 pesoCorporal: float, reps: int, sets: int):
         super().__init__(nombre, grupoMuscular)
         self.__esCardio = False
         self.__pesoCorporal = pesoCorporal
