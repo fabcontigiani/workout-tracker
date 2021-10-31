@@ -8,11 +8,11 @@ class Usuario:
 
     def __str__(self):
         return f"Nombre: {self.__nombre} | Contrasena: {self.__contrasena} | Peso: {self.__peso} | Ingresado: {self.__haIngresado}"
-    
+
     @property
     def nombre(self):
         return self.__nombre
-    
+
     @property
     def contrasena(self):
         return self.__contrasena
@@ -20,6 +20,6 @@ class Usuario:
     @property
     def peso(self):
         return self.__peso
-    
+
     def toggleIngreso(self):
         self.__haIngresado = not self.__haIngresado

@@ -1,6 +1,5 @@
 def main():
     import app
-    import usuario
 
     WorkoutTracker = app.App()
     WorkoutTracker.registrar("Fabrizio", "1234", 96.5)
@@ -9,6 +8,7 @@ def main():
     WorkoutTracker.mostrar()
     WorkoutTracker.eliminar("Fabrizio")
     WorkoutTracker.mostrar()
+
 
 if __name__ == "__main__":
     main()

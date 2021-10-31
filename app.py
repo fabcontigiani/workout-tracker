@@ -18,7 +18,7 @@ class App:
     def mostrar(self):
         for item in self.__usuarios:
             print(item)
-    
+
     def ingresar(self, nombre: str, contrasena: str):
         for item in self.__usuarios:
             if nombre == item.nombre:
@@ -31,7 +31,7 @@ class App:
                     return
         print("El usuario ingresado no ha sido registrado aun.")
         return
-    
+
     def eliminar(self, nombre: str):
         for item in self.__usuarios:
             if nombre == item.nombre:
