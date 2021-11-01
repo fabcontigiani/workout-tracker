@@ -19,18 +19,25 @@ class App:
         for item in self.__usuarios:
             print(item)
 
-    def ingresar(self, nombre: str, contrasena: str):
+    def iniciarSesion(self, nombre: str, contrasena: str):
         for item in self.__usuarios:
             if nombre == item.nombre:
                 if contrasena == item.contrasena:
-                    item.toggleIngreso()
+                    item.__haIngresado = True
                     print("Ha ingresado exitosamente.")
-                    return
+                    return item
                 else:
                     print("Contrasena incorrecta.")
                     return
         print("El usuario ingresado no ha sido registrado aun.")
-        return
+
+    def cerrarSesion(self, nombre: str):
+        for item in self.__usuarios:
+            if nombre == item.nombre:
+                item.__haIngresado = False
+                print("Ha cerrado sesion exitosamente.")
+        print("Usuario no encontrado.")
+
 
     def eliminar(self, nombre: str):
         for item in self.__usuarios:

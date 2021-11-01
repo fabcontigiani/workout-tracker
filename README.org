@@ -2,13 +2,15 @@
 
 ** Descripción
 
-** Requerimientos [40%]
+** Requerimientos [50%]
 
 - [X] Registrar un usuario nuevo
 - [X] Mostrar la lista de usuarios registrados
-- [X] Ingresar un usuario existente
+- [X] Iniciar sesión de un usuario existente
+- [X] Cerrar sesión de un usuario existente
+- [X] Editar el peso de un usuario existente
 - [X] Eliminar un usuario existente
-- [ ] Agregar un ejercicio al diccionario de entrenamientos de un usuario
+- [-] Agregar un ejercicio al diccionario de entrenamientos de un usuario
 - [ ] Mostrar los ejercicios realizados en el entrenamiento de un usuario correspondientes a un día en especifico
 - [ ] Quitar un ejercicio del diccionario de entrenamientos de un usuario
 - [ ] Mostrar el volumen de entrenamiento, en kilogramos, realizado por un usuario un día en especifico

@@ -1,5 +1,5 @@
 from datetime import date
-import Ejercicio
+import ejercicio
 
 class Usuario:
     def __init__(self, nombre: str, contrasena: str, peso: float):
@@ -10,8 +10,7 @@ class Usuario:
         self.__haIngresado = False
 
     def __str__(self):
-        return f"Nombre: {self.__nombre} | Contrasena: {self.__contrasena} | \
-        Peso: {self.__peso} | Ingresado: {self.__haIngresado}"
+        return f"Nombre: {self.__nombre} | Contrasena: {self.__contrasena} | Peso: {self.__peso} | Ingresado: {self.__haIngresado}"
 
     @property
     def nombre(self):
@@ -25,109 +24,46 @@ class Usuario:
     def peso(self):
         return self.__peso
 
-    def toggleIngreso(self):
-        self.__haIngresado = not self.__haIngresado
+    @peso.setter
+    def peso(self, nuevo_peso: float):
+        if (not isinstance(nuevo_peso, float)):
+            print("Valor invalido.")
+            return
+        self.__peso = nuevo_peso
 
-    def agregarEjercicio(self):
-        # Prompt al usuario para elegir tipo de ejercicio
-        print("[1] Peso+Reps\n[2] Reps\n[3] Tiempo")
-        tipo = input("Tipo de ejercicio >> ")
+    def agregarEjercicio(self, objeto: ejercicio.Ejercicio,
+                         fecha: str = date.today().isoformat()):
+        """
+        Acepta un objeto del tipo Ejercicio (PesoReps, Reps o Tiempo) y,
+        opcionalmente, una string para indicar la fecha, en formato iso
+        AAAA-MM-DD, que sera la key a la que estara asociada la lista a la cual
+        se agregara el objeto. De no especificar una fecha tomara por defecto
+        el dia de la fecha.
 
-        if tipo == 1:
-            # Tipo Peso + Reps
-            nombre = input("Nombre del ejercicio >> ")
-            while(not isinstance(nombre, str)):
-                print("Por favor, ingrese un valor valido.\n")
-                nombre = input("Nombre del ejercicio >> ")
-            grupoMuscular = input("Grupo muscular >> ")
-            while(not isinstance(grupoMuscular, str)):
-                print("Por favor, ingrese un valor valido.\n")
-                grupoMuscular = input("Grupo muscular >> ")
-            peso = input("Peso (en kg) >> ")
-            while(not isinstance(peso, float)):
-                print("Por favor, ingrese un valor valido.\n")
-                peso = input("Peso (en kg) >> ")
-            reps = input("Nro de repeticiones >> ")
-            while (not isinstance(reps, int)):
-                print("Por favor, ingrese un valor valido.\n")
-                reps = input("Nro de repeticiones >> ")
-            sets = input("Nro de series >> ")
-            while (not isinstance(sets, int)):
-                print("Por favor, ingrese un valor valido.\n")
-                sets = input("Nro de sets >> ")
-
-            # Creo la instancia correspondiente al ejercicio
-            value = Ejercicio.PesoReps(nombre, grupoMuscular, peso, reps, sets)
-
-        elif tipo == 2:
-            # Tipo Reps
-            nombre = input("Nombre del ejercicio >> ")
-            while(not isinstance(nombre, str)):
-                print("Por favor, ingrese un valor valido.\n")
-                nombre = input("Nombre del ejercicio >> ")
-            grupoMuscular = input("Grupo muscular >> ")
-            while(not isinstance(grupoMuscular, str)):
-                print("Por favor, ingrese un valor valido.\n")
-                grupoMuscular = input("Grupo muscular >> ")
-            reps = input("Nro de repeticiones >> ")
-            while (not isinstance(reps, int)):
-                print("Por favor, ingrese un valor valido.\n")
-                reps = input("Nro de repeticiones >> ")
-            sets = input("Nro de series >> ")
-            while (not isinstance(sets, int)):
-                print("Por favor, ingrese un valor valido.\n")
-                sets = input("Nro de sets >> ")
-
-            # Creo la instancia correspondiente al ejercicio
-            value = Ejercicio.PesoReps(nombre, grupoMuscular, self.__peso,
-                                       reps, sets)
-        elif tipo == 3:
-            # Tipo Tiempo
-            nombre = input("Nombre del ejercicio >> ")
-            while(not isinstance(nombre, str)):
-                print("Por favor, ingrese un valor valido.\n")
-                nombre = input("Nombre del ejercicio >> ")
-            grupoMuscular = input("Grupo muscular >> ")
-            while(not isinstance(grupoMuscular, str)):
-                print("Por favor, ingrese un valor valido.\n")
-                grupoMuscular = input("Grupo muscular >> ")
-            tiempo = input("Tiempo [int](en minutos) >> ")
-            while(not isinstance(tiempo, int)):
-                print("Por favor, ingrese un valor valido.\n")
-                tiempo = input("Tiempo [int](en minutos) >> ")
-            cardio = input("El ejercicio es cardio? [Y/n] >> ")
-            while (cardio not in ("S", "s", "N", "n", "")):
-                print("Por favor, ingrese un valor valido.\n")
-                cardio = input("El ejercicio es cardio? [S/n] >> ")
-            if (cardio in ("S", "s", "")):
-                esCardio = True
-            else:
-                esCardio = False
-
-            # Creo la instancia correspondiente al ejercicio
-            value = Ejercicio.PesoReps(nombre, grupoMuscular, tiempo, esCardio)
-
-        else:
-            print("Tipo de ejercicio invalido.")
+        @param objeto: Ejercicio a agregar
+        @param fecha: Fecha en formato iso que hara de key del dicccionario
+        """
+        # Verifico que el usuario este logeado en la applicacion
+        if (not self.__haIngresado):
+            print("El usuario debe ingresar primero.")
             return
 
-        # Prompt para key del diccionario, el cual sera la fecha que
-        # desee el usuario
-        while True:
-            fecha = input("Ingrese fecha [AAAA-MM-DD](default=hoy) >> ")
-            if (fecha == ""):
-                fecha = date.today()
-            try:
-                key = date.fromisoformat(fecha)
-                break
-            except:
-                print("Por favor, ingrese un valor valido.\n")
+        if fecha not in self.__entrenamientos:
+            self.__entrenamientos[fecha] = []
+        self.__entrenamientos[fecha].append(objeto)
+        print("Ejercicio agregado exitosamente.")
 
-        # Chequeo si la key existe ya en el diccionario, de no hacerlo,
-        # la inicializo con una lista vacia
-        if (key.isoformat() not in self.__entrenamientos):
-            self.__entrenamientos[key.isoformat()] = []
+    def mostrarFecha(self, fecha: str = date.today().isoformat()):
+        # Verifico que el usuario este logeado en la applicacion
+        if (not self.__haIngresado):
+            print("El usuario debe ingresar primero.")
+            return
 
-        # Agrego el ejercicio a la lista de ejercicios correspondiente a
-        # la fecha(key) que indico el usuario, convirtiendo esta en string
-        self.__entrenamientos[key.isoformat()].append(value)
+        # Verifico que la key ingresada exista en el diccionario
+        if (fecha not in self.__entrenamientos):
+            print("No hay ejercicios en esta fecha.")
+            return
+
+        # Recorro la lista de ejercicios correspondiente a la fecha(key)
+        for value in self.__entrenamientos[fecha]:
+            print(value)
