@@ -31,23 +31,21 @@ class Usuario:
             return
         self.__peso = nuevo_peso
 
+    def ingresar(self):
+        self.__haIngresado = True
+
+    def salir(self):
+        self.__haIngresado = False
+
     def agregarEjercicio(self, objeto: ejercicio.Ejercicio,
                          fecha: str = date.today().isoformat()):
-        """
-        Acepta un objeto del tipo Ejercicio (PesoReps, Reps o Tiempo) y,
-        opcionalmente, una string para indicar la fecha, en formato iso
-        AAAA-MM-DD, que sera la key a la que estara asociada la lista a la cual
-        se agregara el objeto. De no especificar una fecha tomara por defecto
-        el dia de la fecha.
-
-        @param objeto: Ejercicio a agregar
-        @param fecha: Fecha en formato iso que hara de key del dicccionario
-        """
         # Verifico que el usuario este logeado en la applicacion
         if (not self.__haIngresado):
             print("El usuario debe ingresar primero.")
             return
 
+        # Si la no existe un entry en el diccionario para la fecha indicada,
+        # creo uno y l inicializo con una lista vacia
         if fecha not in self.__entrenamientos:
             self.__entrenamientos[fecha] = []
         self.__entrenamientos[fecha].append(objeto)
@@ -65,5 +63,6 @@ class Usuario:
             return
 
         # Recorro la lista de ejercicios correspondiente a la fecha(key)
+        print(f">> {fecha} <<")
         for value in self.__entrenamientos[fecha]:
             print(value)
