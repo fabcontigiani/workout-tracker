@@ -23,6 +23,11 @@ def main():
     user.agregarEjercicio(ejercicio.Tiempo("Trote", 15, True))
     # Usuario muestra los ejercicios realizados el dia de hoy
     user.mostrarFecha()
+    # Usuario elimina un ejercicio
+    user.quitarEjercicio("Trote")
+    user.mostrarFecha()
+    # Usuario muestra los ejercicios realizados en otro dia
+    user.mostrarFecha("01-01-2021")
     # Cerrar sesion de usuario
     WorkoutTracker.cerrarSesion("Fabrizio")
     WorkoutTracker.mostrar()

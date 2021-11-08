@@ -37,7 +37,7 @@ class Usuario:
     def salir(self):
         self.__haIngresado = False
 
-    def agregarEjercicio(self, objeto: ejercicio.Ejercicio,
+    def agregarEjercicio(self, objeto: object,
                          fecha: str = date.today().isoformat()):
         # Verifico que el usuario este logeado en la applicacion
         if (not self.__haIngresado):
@@ -66,3 +66,16 @@ class Usuario:
         print(f">> {fecha} <<")
         for value in self.__entrenamientos[fecha]:
             print(value)
+
+    def quitarEjercicio(self, nombre: str,
+                       fecha: str = date.today().isoformat()):
+        if fecha not in self.__entrenamientos:
+            print("No hay ejercicios en esta fecha.")
+            return
+
+        for item in self.__entrenamientos[fecha]:
+            if nombre == item.nombre:
+                self.__entrenamientos[fecha].remove(item)
+                print("Ejercicio eliminado exitosamente.")
+                return
+        print("Ejercicio no encontrado.")
