@@ -10,7 +10,7 @@ class Usuario:
         self.__haIngresado = False
 
     def __str__(self):
-        return f"Nombre: {self.__nombre} | Contrasena: {self.__contrasena} | Peso: {self.__peso} | Ingresado: {self.__haIngresado}"
+        return f"Nombre: {self.__nombre} | Contrasena: {self.__contrasena} | Peso: {self.__peso} kgs | Ingresado: {self.__haIngresado}"
 
     @property
     def nombre(self):
@@ -69,6 +69,12 @@ class Usuario:
 
     def quitarEjercicio(self, nombre: str,
                        fecha: str = date.today().isoformat()):
+        # Verifico que el usuario este logeado en la applicacion
+        if (not self.__haIngresado):
+            print("El usuario debe ingresar primero.")
+            return
+
+        # Verifico que la fecha sea una key valida
         if fecha not in self.__entrenamientos:
             print("No hay ejercicios en esta fecha.")
             return

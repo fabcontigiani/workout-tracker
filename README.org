@@ -2,7 +2,7 @@
 
 ** Descripción
 
-** Requerimientos [72%]
+** Requerimientos [81%]
 
 - [X] Registrar un usuario nuevo
 - [X] Mostrar la lista de usuarios registrados
@@ -12,6 +12,6 @@
 - [X] Eliminar un usuario existente
 - [X] Agregar un ejercicio al diccionario de entrenamientos de un usuario
 - [X] Mostrar los ejercicios realizados en el entrenamiento de un usuario correspondientes a un día en especifico
-- [ ] Quitar un ejercicio del diccionario de entrenamientos de un usuario
+- [X] Quitar un ejercicio del diccionario de entrenamientos de un usuario
 - [ ] Mostrar el volumen de entrenamiento, en kilogramos, realizado por un usuario un día en especifico
 - [ ] Mostrar la cantidad de cardio, en minutos, realizado por un usuario un día en especifico
