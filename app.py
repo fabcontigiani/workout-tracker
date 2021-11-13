@@ -5,7 +5,7 @@ class App:
         self.__nombre = "Workout Tracker"
         self.__usuarios = []
 
-    def registrar(self, nombre: str, contrasena: str, peso: float):
+    def registrarUsuario(self, nombre: str, contrasena: str, peso: float):
         for item in self.__usuarios:
             if nombre == item.nombre:
                 print("Usuario ya registrado.")
@@ -13,9 +13,8 @@ class App:
         item = usuario.Usuario(nombre, contrasena, peso)
         self.__usuarios.append(item)
         print("Usuario registrado exitosamente.")
-        return
 
-    def mostrar(self):
+    def mostrarUsuarios(self):
         for item in self.__usuarios:
             print(item)
 
@@ -40,11 +39,10 @@ class App:
         print("Usuario no encontrado.")
 
 
-    def eliminar(self, nombre: str):
+    def eliminarUsuario(self, nombre: str):
         for item in self.__usuarios:
             if nombre == item.nombre:
                 self.__usuarios.remove(item)
                 print("Usuario eliminado exitosamente.")
                 return
         print("Usuario no encontrado.")
-        return

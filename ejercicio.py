@@ -6,7 +6,7 @@ class Ejercicio(ABC):
         self.__esCardio = esCardio
 
     def __str__(self):
-        raise NotImplementedError()
+        raise NotImplementedError("Cada subclase tendra uno diferente")
 
     @property
     def nombre(self):
@@ -16,9 +16,13 @@ class Ejercicio(ABC):
     def esCardio(self):
         return self.__esCardio
 
-    # @abstractmethod
-    # def volumen(self):
-    #     pass
+    @abstractmethod
+    def volumen(self):
+        raise NotImplementedError("Subclase implementa esto.")
+
+    @abstractmethod
+    def cardio(self):
+        raise NotImplementedError("Subclase implementa esto.")
 
 
 class PesoReps(Ejercicio):
@@ -43,6 +47,15 @@ class PesoReps(Ejercicio):
     def sets(self):
         return self.__sets
 
+    def volumen(self):
+        # El volumen de entrenamiento sera:
+        return self.peso * self.reps * self.sets
+
+    def cardio(self):
+        # No se considerara este tipo de ejercicios para el calculo de los
+        # minutos de cardio realizados
+        return 0
+
 
 class Reps(Ejercicio):
     def __init__(self, nombre: str, pesoCorporal: float, reps: int, sets: int):
@@ -66,6 +79,16 @@ class Reps(Ejercicio):
     def sets(self):
         return self.__sets
 
+    def volumen(self):
+        # Se considerara dos tercios del peso corporal del usuario a la hora del
+        # calculo de volumen de entrenamiento
+        return (2/3) * self.pesoCorporal * self.reps * self.reps
+
+    def cardio(self):
+        # No se considerara este tipo de ejercicios para el calculo de los
+        # minutos de cardio realizados
+        return 0
+
 class Tiempo(Ejercicio):
     def __init__(self, nombre: str, tiempo: int, esCardio: bool):
         super().__init__(nombre, esCardio)
@@ -77,3 +100,17 @@ class Tiempo(Ejercicio):
     @property
     def tiempo(self):
         return self.__tiempo
+
+    def volumen(self):
+        # Ejercicios de este tipo no se consideraran para el calculo del
+        # volumen de entrenamiento
+        return 0
+
+    def cardio(self):
+        # Si el usuario especifico que el ejercicio es cardio a la hora de la
+        # creacion de la instacia devuelve el valor de minutos de cardio
+        # realizado, de lo contrario devuelve 0
+        if self.esCardio:
+            return self.tiempo
+        else:
+            return 0

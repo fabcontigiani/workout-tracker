@@ -85,3 +85,35 @@ class Usuario:
                 print("Ejercicio eliminado exitosamente.")
                 return
         print("Ejercicio no encontrado.")
+
+    def volumenFecha(self, fecha: str = date.today().isoformat()):
+        # Verifico que el usuario este logeado en la applicacion
+        if (not self.__haIngresado):
+            print("El usuario debe ingresar primero.")
+            return
+
+        # Verificar que la key (fecha) existe en el diccionario
+        if fecha not in self.__entrenamientos:
+            print("La fecha ingresada no existe en el diccionario.")
+            return
+
+        acumulador = 0
+        for item in self.__entrenamientos[fecha]:
+            acumulador += item.volumen()
+        print(f"El volumen de entrenamiento realizado el dia {fecha} es de {acumulador:.2f} kgs.")
+
+    def cardioFecha(self, fecha: str = date.today().isoformat()):
+        # Verifico que el usuario este logeado en la applicacion
+        if (not self.__haIngresado):
+            print("El usuario debe ingresar primero.")
+            return
+
+        # Verificar que la key (fecha) existe en el diccionario
+        if fecha not in self.__entrenamientos:
+            print("La fecha ingresada no existe en el diccionario.")
+            return
+
+        acumulador = 0
+        for item in self.__entrenamientos[fecha]:
+            acumulador += item.cardio()
+        print(f"La cantidad de cardio realizado el dia {fecha} es de {acumulador:.2f} minutos.")
