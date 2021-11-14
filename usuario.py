@@ -2,6 +2,14 @@ from datetime import date
 import ejercicio
 
 class Usuario:
+    def __validarFecha(fecha: str) -> bool:
+        returnValue = True
+        try:
+            date.fromisoformat(fecha)
+        except ValueError:
+            returnValue = False
+        return returnValue
+
     def __init__(self, nombre: str, contrasena: str, peso: float):
         self.__nombre = nombre
         self.__contrasena = contrasena
@@ -33,32 +41,23 @@ class Usuario:
 
     @property
     def haIngresado(self):
+        """Retorna el estado de ingreso del usuario."""
         return self.__haIngresado
 
     def ingresar(self):
+        """Cambia el estado de ingreso del usuario a verdadero."""
         self.__haIngresado = True
 
     def salir(self):
+        """Cambia el estado de ingreso del usuario a falso."""
         self.__haIngresado = False
 
-    def agregarEjercicio(self, objeto: object,
-                         fecha: str = date.today().isoformat()):
-        # Verifico que el usuario este logeado en la applicacion
-        if (not self.__haIngresado):
-            print("El usuario debe ingresar primero.")
-            return
-
-        # Si la key (fecha) no existe en el diccionario la inicializo con
-        # una lista vacia
-        if fecha not in self.__entrenamientos:
-            self.__entrenamientos[fecha] = []
-        self.__entrenamientos[fecha].append(objeto)
-        print("Ejercicio agregado exitosamente.")
-
-    def agregarEjercicio2(self, tipo: int, nombre: str,
-                          fecha: str = date.today().isoformat(),
-                          peso: int = None, reps: int = None,
-                          sets: int = None, tiempo: int = None):
+    def agregarEjercicio(self, nombre: str,
+                         fecha: str = date.today().isoformat(),
+                         peso: int = None,
+                         reps: int = None,
+                         sets: int = None,
+                         tiempo: int = None):
         # Verifico que el usuario este logeado en la applicacion
         if (not self.__haIngresado):
             print("El usuario debe ingresar primero.")
@@ -69,59 +68,33 @@ class Usuario:
         if fecha not in self.__entrenamientos:
             self.__entrenamientos[fecha] = []
 
-        if tipo == 1:
-            # Tipo PesoReps
-            if peso is not None and isinstance(peso, int):
-                if reps is not None and isinstance(reps, int):
-                    if sets is not None and isinstance(sets, int):
-                        self.__entrenamientos[fecha].append(
-                            ejercicio.PesoReps(nombre, peso, reps, sets))
-                    else:
-                        print("Nro de sets invalido.")
-                        return
-                else:
-                    print("Nro de reps invalido.")
-                    return
-            else:
-                print("Peso invalido.")
-                return
-        elif tipo == 2:
-            pass
-        elif tipo == 3:
-            pass
-        else:
-            print("Tipo de ejercicio incorrecto")
-
-    def agregarEjercicio3(self, nombre: str,
-                          fecha: str = date.today().isoformat(),
-                          peso: int = None, reps: int = None, sets: int = None,
-                          tiempo: int = None):
-
-        # Verifico que el usuario este logeado en la applicacion
-        if (not self.__haIngresado):
-            print("El usuario debe ingresar primero.")
+        # Validar fecha
+        if not Usuario.__validarFecha(fecha):
+            print("Formato de fecha invalido, debe ser AAAA-MM-DD.")
             return
-
-        # Si la key (fecha) no existe en el diccionario la inicializo con
-        # una lista vacia
-        if fecha not in self.__entrenamientos:
-            self.__entrenamientos[fecha] = []
-
-        # TODO Validar fecha
 
         if (isinstance(peso, int) and isinstance(reps, int) and
                 isinstance(sets, int) and tiempo is None):
             # Tipo PesoReps
+            if (peso < 1 or reps < 1 or sets < 1):
+                print("Valor entero menor a uno.")
+                return
             self.__entrenamientos[fecha].append(
                 ejercicio.PesoReps(nombre, peso, reps, sets))
         elif (isinstance(reps, int) and isinstance(sets, int) and
                 tiempo is None and peso is None):
             # Tipo Reps
+            if (reps < 1 or sets < 1):
+                print("Valor entero menor a uno.")
+                return
             self.__entrenamientos[fecha].append(
-                ejercicio.Reps(nombre, self.pesoCorporal, reps, sets))
+                ejercicio.Reps(nombre, self.peso, reps, sets))
         elif (isinstance(tiempo, int) and peso is None and reps is None
                 and sets is None):
             # Tipo Tiempo
+            if tiempo < 1:
+                print("Valor entero menor a uno.")
+                return
             self.__entrenamientos[fecha].append(
                 ejercicio.Tiempo(nombre, tiempo))
         else:

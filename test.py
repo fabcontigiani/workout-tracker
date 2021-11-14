@@ -1,7 +1,5 @@
 def main():
     import app
-    import ejercicio  # TODO usuario debe poder crear ejercicios a traves de un
-    # metodo propio
 
     WorkoutTracker = app.App()
     # Crear usuario y registrarlo en el sistema
@@ -25,9 +23,17 @@ def main():
     user.peso = 95.8
     WorkoutTracker.mostrarUsuarios()
     # Usuario agrega ejercicios a su entrenamiento del dia de hoy
-    user.agregarEjercicio(ejercicio.PesoReps("Press de Banca", 60, 5, 5))
-    user.agregarEjercicio(ejercicio.Reps("Dominadas", user.peso, 8, 4))
-    user.agregarEjercicio(ejercicio.Tiempo("Trote", 15))
+    user.agregarEjercicio("Press de Banca", peso=60, reps=5, sets=5)
+    user.agregarEjercicio("Dominadas", reps=8, sets=4)
+    user.agregarEjercicio("Trote", tiempo=15)
+    # Usuario intenta agregar un ejercicio invalido
+    user.agregarEjercicio("Invalido", peso=True, reps=-3.4, sets="",
+                          tiempo=user)
+    # Usuario intenta agregar un ejercicio con un entero negativo (o cero)
+    user.agregarEjercicio("Negativo", tiempo=-1)
+    user.agregarEjercicio("Cero", tiempo=0)
+    # Usuario intenta agregar un ejercicio a una fecha invalida
+    user.agregarEjercicio("Fecha Invalida", tiempo=1, fecha="Invalido")
     # Usuario muestra los ejercicios realizados el dia de hoy
     user.mostrarFecha()
     # Mostrar volumen de entrenamiendo del dia de hoy
@@ -44,7 +50,7 @@ def main():
     WorkoutTracker.cerrarSesion("Fabrizio")
     WorkoutTracker.mostrarUsuarios()
     # Usuario no ingresado no puede agregar ejercicios
-    user.agregarEjercicio(ejercicio.Tiempo("Plancha", 1))
+    user.agregarEjercicio("Plancha", tiempo=1)
     # Usuario no ingresado no puede mostrar ejercicios
     user.mostrarFecha()
     # Usuario no ingresado no puede quitar ejercicios
