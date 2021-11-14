@@ -106,6 +106,11 @@ class Usuario:
             print("El usuario debe ingresar primero.")
             return
 
+        # Validar fecha
+        if not Usuario.__validarFecha(fecha):
+            print("Formato de fecha invalido, debe ser AAAA-MM-DD.")
+            return
+
         # Verifico que la key ingresada exista en el diccionario
         if (fecha not in self.__entrenamientos):
             print("No hay ejercicios en esta fecha.")
@@ -117,10 +122,15 @@ class Usuario:
             print(value)
 
     def quitarEjercicio(self, nombre: str,
-                       fecha: str = date.today().isoformat()):
+                        fecha: str = date.today().isoformat()):
         # Verifico que el usuario este logeado en la applicacion
         if (not self.__haIngresado):
             print("El usuario debe ingresar primero.")
+            return
+
+        # Validar fecha
+        if not Usuario.__validarFecha(fecha):
+            print("Formato de fecha invalido, debe ser AAAA-MM-DD.")
             return
 
         # Verifico que la fecha sea una key valida
@@ -139,6 +149,11 @@ class Usuario:
         # Verifico que el usuario este logeado en la applicacion
         if (not self.__haIngresado):
             print("El usuario debe ingresar primero.")
+            return
+
+        # Validar fecha
+        if not Usuario.__validarFecha(fecha):
+            print("Formato de fecha invalido, debe ser AAAA-MM-DD.")
             return
 
         # Verificar que la key (fecha) existe en el diccionario
