@@ -1,9 +1,8 @@
 from abc import ABC, abstractmethod
 
 class Ejercicio(ABC):
-    def __init__(self, nombre: str, esCardio: bool):
+    def __init__(self, nombre: str):
         self.__nombre = nombre
-        self.__esCardio = esCardio
 
     def __str__(self):
         raise NotImplementedError("Cada subclase tendra uno diferente")
@@ -12,22 +11,14 @@ class Ejercicio(ABC):
     def nombre(self):
         return self.__nombre
 
-    @property
-    def esCardio(self):
-        return self.__esCardio
-
     @abstractmethod
     def volumen(self):
-        raise NotImplementedError("Subclase implementa esto.")
-
-    @abstractmethod
-    def cardio(self):
         raise NotImplementedError("Subclase implementa esto.")
 
 
 class PesoReps(Ejercicio):
     def __init__(self, nombre: str, peso: int, reps: int, sets: int):
-        super().__init__(nombre, False)
+        super().__init__(nombre)
         self.__peso = peso
         self.__reps = reps
         self.__sets = sets
@@ -51,15 +42,10 @@ class PesoReps(Ejercicio):
         # El volumen de entrenamiento sera:
         return self.peso * self.reps * self.sets
 
-    def cardio(self):
-        # No se considerara este tipo de ejercicios para el calculo de los
-        # minutos de cardio realizados
-        return 0
-
 
 class Reps(Ejercicio):
     def __init__(self, nombre: str, pesoCorporal: float, reps: int, sets: int):
-        super().__init__(nombre, False)
+        super().__init__(nombre)
         self.__pesoCorporal = pesoCorporal
         self.__reps = reps
         self.__sets = sets
@@ -80,18 +66,14 @@ class Reps(Ejercicio):
         return self.__sets
 
     def volumen(self):
-        # Se considerara dos tercios del peso corporal del usuario a la hora del
-        # calculo de volumen de entrenamiento
+        # Se considerara dos tercios del peso corporal del usuario a la hora
+        # del calculo de volumen de entrenamiento
         return (2/3) * self.pesoCorporal * self.reps * self.reps
 
-    def cardio(self):
-        # No se considerara este tipo de ejercicios para el calculo de los
-        # minutos de cardio realizados
-        return 0
 
 class Tiempo(Ejercicio):
-    def __init__(self, nombre: str, tiempo: int, esCardio: bool):
-        super().__init__(nombre, esCardio)
+    def __init__(self, nombre: str, tiempo: int):
+        super().__init__(nombre)
         self.__tiempo = tiempo
 
     def __str__(self):
@@ -105,12 +87,3 @@ class Tiempo(Ejercicio):
         # Ejercicios de este tipo no se consideraran para el calculo del
         # volumen de entrenamiento
         return 0
-
-    def cardio(self):
-        # Si el usuario especifico que el ejercicio es cardio a la hora de la
-        # creacion de la instacia devuelve el valor de minutos de cardio
-        # realizado, de lo contrario devuelve 0
-        if self.esCardio:
-            return self.tiempo
-        else:
-            return 0

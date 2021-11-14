@@ -14,4 +14,3 @@
 - [X] Mostrar los ejercicios realizados en el entrenamiento de un usuario correspondientes a un día en especifico
 - [X] Quitar un ejercicio del diccionario de entrenamientos de un usuario
 - [X] Mostrar el volumen de entrenamiento, en kilogramos, realizado por un usuario un día en especifico
-- [X] Mostrar la cantidad de cardio, en minutos, realizado por un usuario un día en especifico
