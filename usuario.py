@@ -44,13 +44,11 @@ class Usuario:
         """Retorna el estado de ingreso del usuario."""
         return self.__haIngresado
 
-    def ingresar(self):
-        """Cambia el estado de ingreso del usuario a verdadero."""
-        self.__haIngresado = True
-
-    def salir(self):
-        """Cambia el estado de ingreso del usuario a falso."""
-        self.__haIngresado = False
+    @haIngresado.setter
+    def haIngresado(self, value: bool):
+        if not isinstance(value, bool):
+            raise ValueError
+        self.__haIngresado = value
 
     def agregarEjercicio(self, nombre: str,
                          fecha: str = date.today().isoformat(),

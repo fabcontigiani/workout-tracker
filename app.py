@@ -22,7 +22,7 @@ class App:
         for item in self.__usuarios:
             if nombre == item.nombre:
                 if contrasena == item.contrasena:
-                    item.ingresar()
+                    item.haIngresado = True
                     print("Ha ingresado exitosamente.")
                     return item
                 else:
@@ -33,7 +33,7 @@ class App:
     def cerrarSesion(self, nombre: str):
         for item in self.__usuarios:
             if nombre == item.nombre:
-                item.salir()
+                item.haIngresado = False
                 print("Ha cerrado sesion exitosamente.")
                 return
         print("Usuario no encontrado.")
