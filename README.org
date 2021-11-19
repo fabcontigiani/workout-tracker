@@ -36,18 +36,18 @@ Cuando el usuario solicite el volumen de entrenamiento correspondiente a una fec
 
 ** Como testear
 
-1. Clonar el repositorio y cambiar directorio
+Clonar el repositorio y cambiar directorio
 #+begin_src shell
 git clone https://github.com/fabcontigiani/workout-tracker
 cd workout-tracker/
 #+end_src
-2. Iniciar python
+Iniciar python
 #+begin_src shell
 python3
 #+end_src
-3. Importar el modulo app.py e instanciar un objeto de la clase App
+Importar el modulo app.py e instanciar un objeto de la clase App
 #+begin_src python
 import app
 workoutTracker = app.App()
 #+end_src
-4. Realizar los tests necesarios.
+Realizar los tests necesarios.
