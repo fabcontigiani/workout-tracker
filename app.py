@@ -30,6 +30,9 @@ class App:
         for item in self.__usuarios:
             if nombre == item.nombre:
                 if contrasena == item.contrasena:
+                    if item.haIngresado is True:
+                        print("El usuario ya inicio sesion previamente.")
+                        return
                     item.haIngresado = True
                     return item
                 else:
@@ -44,6 +47,9 @@ class App:
 
         for item in self.__usuarios:
             if nombre == item.nombre:
+                if item.haIngresado is False:
+                    print("El usuario ya cerro sesion previamente.")
+                    return
                 item.haIngresado = False
                 return
         print("Usuario no encontrado.")
