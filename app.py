@@ -48,7 +48,6 @@ class App:
                 return
         print("Usuario no encontrado.")
 
-
     def eliminarUsuario(self, nombre: str):
         if not isinstance(nombre, str):
             print("Argumento invalido")

@@ -1,6 +1,25 @@
 * Workout Tracker
 
+** Objetivos
+
+El objetivo de este proyecto es aplicar los conceptos aprendidos sobre el paradigma de Programación Orientada a Objetos durante la cursada de IC224-Programación, tales como, encapsulación, abstracción, herencia, comunicación entre clases, polimorfismo.
+
 ** Descripción
+
+Esta app permite al usuario:
+- Registrar los ejercicios realizados
+- Calcular el volumen de entrenamiento realizado, en kilogramos
+
+La app posee la capacidad de registrar usuarios nuevos, eliminarlos e iniciar o cerrar sesión de los mismos. Un usuario que no haya ingresado sesión no podrá hacer uso de la app.
+
+Los usuarios pueden registrar 3 tipos de ejercicios:
+- Ejercicios donde se especifiquen el peso o carga involucrada, las repeticiones y las series realizadas
+- Ejercicios donde se especifiquen las repeticiones y las series realizadas, donde se tendrá en cuenta dos tercios del peso corporal del usuario como carga del ejercicio
+- Ejercicios donde se especifique el tiempo, en minutos
+Ademas, el usuario puede mostrar los ejercicios realizados una fecha especifica, o eliminar un ejercicio previamente registrado de ser necesario.
+
+Cuando el usuario solicite el volumen de entrenamiento correspondiente a una fecha en especifico, la app se encargara de realizar el calculo, ya que cada tipo de ejercicio se considerara de forma diferente para el calculo del volumen de entrenamiento y serán capaces de reflejar esto a traves de un comportamiento polimorfo.
+
 
 ** Requerimientos [100%]
 
@@ -14,3 +33,24 @@
 - [X] Mostrar los ejercicios realizados en el entrenamiento de un usuario correspondientes a un día en especifico
 - [X] Quitar un ejercicio del diccionario de entrenamientos de un usuario
 - [X] Mostrar el volumen de entrenamiento, en kilogramos, realizado por un usuario un día en especifico
+
+** Como testear
+
+1. Clonar el repositorio y cambiar directorio
+#+begin_src shell
+git clone https://github.com/fabcontigiani/workout-tracker
+cd workout-tracker/
+#+end_src
+
+2. Iniciar python
+   #+begin_src shell
+python3
+   #+end_src
+
+3. Importar el modulo app.py e instanciar un objeto de la clase App
+   #+begin_src python
+import app
+workoutTracker = app.App()
+   #+end_src
+
+4. Realizar los tests necesarios.
