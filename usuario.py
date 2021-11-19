@@ -139,7 +139,6 @@ class Usuario:
         for item in self.__entrenamientos[fecha]:
             if nombre == item.nombre:
                 self.__entrenamientos[fecha].remove(item)
-                print("Ejercicio eliminado exitosamente.")
                 return
         print("Ejercicio no encontrado.")
 

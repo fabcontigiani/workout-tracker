@@ -6,24 +6,31 @@ class App:
         self.__usuarios = []
 
     def registrarUsuario(self, nombre: str, contrasena: str, peso: float):
+        if (not isinstance(nombre, str) or not isinstance(contrasena, str) or
+                not isinstance(peso, float)):
+            print("Argumentos invalidos")
+            return
+
         for item in self.__usuarios:
             if nombre == item.nombre:
                 print("Usuario ya registrado.")
                 return
         item = usuario.Usuario(nombre, contrasena, peso)
         self.__usuarios.append(item)
-        print("Usuario registrado exitosamente.")
 
     def mostrarUsuarios(self):
         for item in self.__usuarios:
             print(item)
 
     def iniciarSesion(self, nombre: str, contrasena: str):
+        if (not isinstance(nombre, str) or not isinstance(contrasena, str)):
+            print("Argumentos invalidos")
+            return
+
         for item in self.__usuarios:
             if nombre == item.nombre:
                 if contrasena == item.contrasena:
                     item.haIngresado = True
-                    print("Ha ingresado exitosamente.")
                     return item
                 else:
                     print("Contrasena incorrecta.")
@@ -31,18 +38,24 @@ class App:
         print("El usuario ingresado no ha sido registrado aun.")
 
     def cerrarSesion(self, nombre: str):
+        if not isinstance(nombre, str):
+            print("Argumento invalido")
+            return
+
         for item in self.__usuarios:
             if nombre == item.nombre:
                 item.haIngresado = False
-                print("Ha cerrado sesion exitosamente.")
                 return
         print("Usuario no encontrado.")
 
 
     def eliminarUsuario(self, nombre: str):
+        if not isinstance(nombre, str):
+            print("Argumento invalido")
+            return
+
         for item in self.__usuarios:
             if nombre == item.nombre:
                 self.__usuarios.remove(item)
-                print("Usuario eliminado exitosamente.")
                 return
         print("Usuario no encontrado.")
