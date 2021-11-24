@@ -68,7 +68,7 @@ class Reps(Ejercicio):
     def volumen(self):
         # Se considerara dos tercios del peso corporal del usuario a la hora
         # del calculo de volumen de entrenamiento
-        return (2/3) * self.pesoCorporal * self.reps * self.reps
+        return (2/3) * self.pesoCorporal * self.reps * self.sets
 
 
 class Tiempo(Ejercicio):
