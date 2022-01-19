@@ -64,3 +64,6 @@ class App:
                 self.__usuarios.remove(item)
                 return
         print("Usuario no encontrado.")
+        
+        
+        print("Clonando")
